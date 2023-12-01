@@ -10,6 +10,11 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    public function is_admin()
+    {
+        // Assuming 'IsAdmin' is the value when a user is an admin
+        return $this->is_admin === true;
+    }
     use HasApiTokens, HasFactory, Notifiable;
 
     /**

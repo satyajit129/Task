@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::group(['prefix' => 'admin',  'middleware' => ['auth','user-access:1']], function(){
+    Route::get('/dashboard', [AdminController::class, 'adminHome'])->name('admin.dashboard');
+    Route::get('/pending', [AdminController::class, 'index'])->name('admin.pending');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+Route::group(['prefix' => 'user', 'middleware' => ['auth', 'user-access:2']], function (){
+    Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+    Route::get('/dashboard/create', [UserController::class, 'create'])->name('user.dashboard.create');
+});
+
+Auth::routes();
+// Admin Routes
+// Route::get('admin/dashboard', [HomeController::class, 'adminHome'])->name('admin.dashboard')->middleware('is_admin');
+
+
+

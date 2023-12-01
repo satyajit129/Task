@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class IsAdmin
@@ -13,11 +14,14 @@ class IsAdmin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, $userType)
     {
-        if(auth()->user()->is_admin == 1){
+        if(auth()->user()->is_admin == $userType){
             return $next($request);
         }
-        return redirect('home')->with('error',"You don't have admin access.");
+        Auth::logout();
+
+        return redirect()->route('login')
+            ->with('error','You Dont Have permission on this page..');
     }
 }

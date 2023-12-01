@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Hedvig+Letters+Serif:opsz@12..24&family=Montserrat:wght@200&family=Open+Sans:wght@600&family=Poppins&family=Roboto&family=Sedgwick+Ave+Display&display=swap');
+/* 
+font-family: 'Dancing Script', cursive;
+font-family: 'Hedvig Letters Serif', serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Sedgwick Ave Display', cursive; */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 13px !important;
+}
+
+.khulna-logo img{
+    height: 150px;
+    width: 150px;
+}
+.heading h2,
+.heading h3{
+    font-family: 'Hedvig Letters Serif', serif;
+}
+.heading-details{
+    border: 1px solid black;
+    background: rgba(128, 128, 128, 0.658);
+    border-radius: 5px;
+    padding: 10px 10px 0 10px;
+}
