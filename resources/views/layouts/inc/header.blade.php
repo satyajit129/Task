@@ -8,13 +8,13 @@
                             alt="#"></div>
                     <div class="nftmax-header__left">
 
-                        <div class="nftmax-header__form">
+                        {{-- <div class="nftmax-header__form">
                             <form class="nftmax-header__form-inner" action="#">
                                 <button class="search-btn" type="submit"><img src="{{ asset('Backend/assets/img/search.png') }}"
                                         alt="#"></button>
                                 <input name="s" value type="text" placeholder="Search items, collections...">
                             </form>
-                        </div>
+                        </div> --}}
 
                     </div>
                     <div class="nftmax-header__right">

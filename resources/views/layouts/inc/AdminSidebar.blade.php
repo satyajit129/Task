@@ -15,7 +15,7 @@
             <div class="menu-bar">
                 <ul class="menu-bar__one">
                     <li class="active">
-                        <a href="index.html">
+                        <a href="{{ route('admin.dashboard') }}">
                             <span class="menu-bar__text">
                                 <span class="nftmax-menu-icon nftmax-svg-icon__v1">
                                     <svg class="nftmax-svg-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">

@@ -33,8 +33,8 @@
                             </span>
                         </a>
                     </li>
-                    {{-- <li class="{{ route('user.dashboard') }}">
-                        <a href="">
+                    <li class="">
+                        <a href="{{ route('user.dashboard.drafts',auth()->user()->id) }}">
                             <span class="menu-bar__text">
                                 <span class="nftmax-menu-icon nftmax-svg-icon__v1">
                                     <svg class="nftmax-svg-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -48,10 +48,10 @@
                                         </path>
                                     </svg>
                                 </span>
-                                <span class="menu-bar__name">My Application</span>
+                                <span class="menu-bar__name">My Draft</span>
                             </span>
                         </a>
-                    </li> --}}
+                    </li>
                 </ul>
             </div>
         </div>

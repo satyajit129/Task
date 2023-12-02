@@ -13,6 +13,8 @@
     <meta name="description" content="#">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>NFT MAX - NFT Dashboard Template</title>
 
     <link rel="icon" href="assets/img/favicon.png">
@@ -26,12 +28,14 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/style.css') }}">
     <link rel="stylesheet" href="{{ asset('Backend/assets/formstyle.css') }}">
     <script src="https://code.jquery.com/jquery-3.7.0.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
     <div class="body-bg" style="background-image:url({{ asset('Backend/assets/img/body-bg.jpg') }})">
 
-        @if (auth()->user()->role == 1)
+        @if (auth()->user()->is_admin == 1)
             @include('layouts.inc.AdminSidebar')
         @else
             @include('layouts.inc.UserSidebar')
@@ -107,12 +111,102 @@
     <script src="{{ asset('Backend/assets/js/final-countdown.min.js') }}"></script>
     <script src="{{ asset('Backend/assets/js/circle-progress.min.js') }}"></script>
     <script src="{{ asset('Backend/assets/js/main.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {{-- date picker --}}
+    <script>
+        $(function() {
+            $(".datepicker").datepicker();
+        });
+    </script>
+
+    {{-- Ajax Approve and reject --}}
+    <script>
+        $(document).ready(function () {
+            $('.approve-btn').on('click', function () {
+                var applicationId = $(this).data('application-id');
+                approveOrReject('approve', applicationId);
+            });
+
+            $('.reject-btn').on('click', function () {
+                var applicationId = $(this).data('application-id');
+                approveOrReject('reject', applicationId);
+            });
+
+            function approveOrReject(action, applicationId) {
+                $.ajax({
+                    url: '/admin/' + action + '/' + applicationId,
+                    method: 'POST', // Assuming your routes are set up as POST requests
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (data) {
+                        // Handle success response
+                        console.log(data);
+
+                        // Update the UI or handle other logic here without reloading the page
+
+                        // For example, you can remove the row from the table
+                        $('#application-row-' + applicationId).remove();
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error response
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+        });
+    </script>
+
+    {{-- search using ajax --}}
+
+    <script>
+        $(document).ready(function () {
+            var timer;
+    
+            $('#search').on('keyup', function () {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    performSearch();
+                }, 500); // Adjust the delay as needed
+            });
+    
+            $('#search-form').submit(function (e) {
+                e.preventDefault();
+                performSearch();
+            });
+    
+            function performSearch() {
+                var search = $('#search').val();
+    
+                $.ajax({
+                    url: '{{ route('search.applications') }}',
+                    method: 'GET',
+                    data: {
+                        search: search
+                    },
+                    success: function (data) {
+                        $('#applications-body').html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+    
+            function deleteApplication(applicationId) {
+                // Add your logic for deleting an application here
+            }
+        });
+    </script>
+    {{-- Image Showing --}}
     <script>
         function displayImage(input) {
             var selectedImage = document.getElementById('selected-image');
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     selectedImage.src = e.target.result;
                 };
                 reader.readAsDataURL(input.files[0]);
@@ -120,6 +214,22 @@
         }
     </script>
     
+     <script>
+        function previewImage(input) {
+            var preview = document.getElementById('preview-image');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
     <script>
         jQuery(document).ready(function($) {
             $('[data-countdown]').each(function() {
