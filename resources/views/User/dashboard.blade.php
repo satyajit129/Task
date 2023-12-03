@@ -6,7 +6,7 @@
         <div class="card-header p-3">
             <div class="header d-flex justify-content-between">
                 <h4>My Application</h4>
-                <a href="{{ route('user.dashboard.create') }}" class="btn btn-success btn-sm ">Create Application</a>
+                <a href="{{ route('user.dashboard.create') }}" class="btn btn-success btn-sm ">Create Application</a>               
             </div>
         </div>
         <div class="card-body">
@@ -43,8 +43,11 @@
                             </td>
                             <td class="text-center">
                                 <a href="" class="btn btn-sm btn-primary">View</a>
-                                <a href="{{ route('user.dashboard.edit',$application->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                <a href="{{ route('user.dashboard.destroy',$application->id) }}" onclick="return confirm('Are you really want to delete the data ?')" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="{{ route('user.dashboard.edit', $application->id) }}"
+                                    class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{ route('user.dashboard.destroy', $application->id) }}"
+                                    onclick="return confirm('Are you really want to delete the data ?')"
+                                    class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     @endforeach

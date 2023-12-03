@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\UserSearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','user-access:1']], fu
     Route::get('/view/{id}', [AdminController::class, 'view'])->name('admin.view');
     Route::post('/approve/{id}', [AdminController::class, 'approve'])->name('admin.approve');
     Route::post('/reject/{id}', [AdminController::class, 'reject'])->name('admin.reject');
-
     Route::get('/search/applications', [AdminSearchController::class, 'searchApplications'])->name('search.applications');
 });
 
@@ -41,6 +41,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'user-access:2']], fu
     Route::post('/dashboard/update/{id}', [UserController::class, 'update'])->name('user.dashboard.update');
     Route::get('/dashboard/destroy/{id}', [UserController::class, 'destroy'])->name('user.dashboard.destroy');
     Route::get('/dashboard/drafts/{id}', [UserController::class, 'showDrafts'])->name('user.dashboard.drafts');
+
+    Route::get('/dashboard/search', [UserSearchController::class, 'index'])->name('user.dashboard.search');
 });
 
 
