@@ -7,8 +7,9 @@ Multiple authentication is being maintained
 The admin panel has the following features:
 1. The login system (password and email or mobile device)
 3. The submitted application will be viewed by the admin.
-4. A search box with the ability to look up applicants by name, NID, or application number will be included. Use Ajax to complete the search.
-5. The application can be approved or cancelled. Using Ajax, it was completed.
+4. there are 2 menu bar on menu bar showing the panding Request And one Menubar is Presenting the Approve application.
+5. A search box with the ability to look up applicants by name, NID, or application number will be included. Use Ajax to complete the search.
+6. The application can be approved or cancelled. Using Ajax, it was completed.
 
 API : User form API(GET method). if search with user id then it show all the information othewise is shows the total user list with details
 
