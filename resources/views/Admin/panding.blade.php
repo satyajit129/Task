@@ -47,8 +47,6 @@
                                 @endif
                             </td>
                             <td class="text-center">
-                                <a href="#" class="btn btn-sm btn-primary">View</a>
-
                                 <button type="button" class="btn btn-sm btn-success approve-btn"
                                     data-application-id="{{ $application->id }}">Approve</button>
 

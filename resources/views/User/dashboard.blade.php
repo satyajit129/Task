@@ -42,7 +42,6 @@
                                 @endif
                             </td>
                             <td class="text-center">
-                                <a href="" class="btn btn-sm btn-primary">View</a>
                                 <a href="{{ route('user.dashboard.edit', $application->id) }}"
                                     class="btn btn-sm btn-info">Edit</a>
                                 <a href="{{ route('user.dashboard.destroy', $application->id) }}"

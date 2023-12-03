@@ -44,7 +44,7 @@
                                 src="{{ asset('storage/images/' . $application->photo) }}" width="50px"
                                 alt="Picture"></td>
                         <td class="text-center">
-                            <a href="#" class="btn btn-sm btn-primary">View</a>
+                           
                             <a href="#" onclick="deleteApplication({{ $application->id }})"
                                class="btn btn-danger btn-sm">Delete</a>
                         </td>
